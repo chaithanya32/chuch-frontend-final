@@ -1,0 +1,32 @@
+.volunteer-navbar {
+  background-color: #1e3a8a;
+  color: white;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: "Segoe UI", sans-serif;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.volunteer-navbar .nav-left {
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.volunteer-navbar .nav-right button {
+  background-color: #ef4444;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.volunteer-navbar .nav-right button:hover {
+  background-color: #dc2626;
+}
