@@ -8,6 +8,7 @@ import VolunteerDashboard from "./pages/VolunteerDashboard";
 import VolunteerRoute from "./components/VolunteerRoute";
 import PrivateRoute from "./components/PrivateRoute";
 import ForgotPasswordPage from "./pages/ForgotPasswordPage";
+import AdminDashboard from "./pages/AdminDashboard";
 
 function App() {
   return (
@@ -16,7 +17,8 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/signup" element={<SignupPage />} />
         <Route path="/login" element={<LoginPage />} />
-        <Route path="/forgot-password" element={<ForgotPasswordPage />} />
+        <Route path="/forgot-password" element={<ForgotPasswordPage />} />\
+        <Route path="/admin" element={<AdminDashboard />} />
 
         {/* Protected routes */}
         <Route

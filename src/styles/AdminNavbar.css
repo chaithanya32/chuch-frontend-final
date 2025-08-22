@@ -1,0 +1,30 @@
+.admin-navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #004080;
+  color: #fff;
+  padding: 10px 20px;
+  font-family: Arial, sans-serif;
+}
+
+.admin-navbar .logo {
+  font-weight: bold;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.admin-navbar .nav-links {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+.admin-navbar .nav-links li {
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.admin-navbar .nav-links li:hover {
+  color: #ffd700;
+}

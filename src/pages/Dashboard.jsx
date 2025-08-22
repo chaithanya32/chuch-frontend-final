@@ -1,6 +1,13 @@
 import React, { useState, useEffect } from "react";
 import "../styles/Dashboard.css";
-import { fetchCurrentUser, fetchAttendanceLogs, markAttendance, markExit, checkVolunteer } from "../utils/api";
+import {
+  fetchCurrentUser,
+  fetchAttendanceLogs,
+  markAttendance,
+  markExit,
+  checkVolunteer,
+  checkAdmin, // ✅ new import
+} from "../utils/api";
 import { ToastContainer, toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
@@ -12,6 +19,7 @@ const Dashboard = () => {
   const [loading, setLoading] = useState(true);
   const [mode, setMode] = useState("IN"); // IN or OUT
   const [isVolunteer, setIsVolunteer] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false); // ✅ new state
   const [isSubmitting, setIsSubmitting] = useState(false);
   const navigate = useNavigate();
 
@@ -29,6 +37,13 @@ const Dashboard = () => {
           setIsVolunteer(true);
         } catch {
           setIsVolunteer(false);
+        }
+
+        try {
+          await checkAdmin();
+          setIsAdmin(true);
+        } catch {
+          setIsAdmin(false);
         }
       } catch (err) {
         console.error(err);
@@ -93,15 +108,25 @@ const Dashboard = () => {
         />
 
         <div className="toggle-container">
-          <button className={`toggle-btn ${mode === "IN" ? "active" : ""}`} onClick={() => setMode("IN")}>
+          <button
+            className={`toggle-btn ${mode === "IN" ? "active" : ""}`}
+            onClick={() => setMode("IN")}
+          >
             IN
           </button>
-          <button className={`toggle-btn ${mode === "OUT" ? "active" : ""}`} onClick={() => setMode("OUT")}>
+          <button
+            className={`toggle-btn ${mode === "OUT" ? "active" : ""}`}
+            onClick={() => setMode("OUT")}
+          >
             OUT
           </button>
         </div>
 
-        <button className="attend-btn" onClick={handleAttendClick} disabled={isSubmitting}>
+        <button
+          className="attend-btn"
+          onClick={handleAttendClick}
+          disabled={isSubmitting}
+        >
           {isSubmitting ? "Submitting... ⏳" : "Submit Attendance"}
         </button>
       </div>
@@ -134,11 +159,33 @@ const Dashboard = () => {
 
       {isVolunteer && (
         <div className="volunteer-section">
-          <button className="volunteer-btn" onClick={() => navigate("/volunteer-dashboard")}>
+          <button
+            className="volunteer-btn"
+            onClick={() => navigate("/volunteer-dashboard")}
+          >
             Go to Volunteer Dashboard
           </button>
         </div>
       )}
+
+      {isAdmin && (
+        <div className="admin-section">
+          <button
+            className="admin-btn"
+            onClick={() => navigate("/admin")}
+          >
+            Go to Admin Dashboard
+          </button>
+        </div>
+      )}
+        <div className="home-section">
+        <button
+          className="home-btn"
+          onClick={() => navigate("/")}
+        >
+          🏠 Home
+        </button>
+      </div>
 
       <ToastContainer position="top-right" autoClose={3000} hideProgressBar />
     </div>

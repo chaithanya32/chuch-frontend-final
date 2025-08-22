@@ -134,3 +134,32 @@ export const runDailyEmailTasks = async () => {
 
   return response.json();
 };
+
+/// ---------------- VOLUNTEERS ----------------
+
+// Get all volunteers
+export const getVolunteers = async () => {
+  const res = await API.get("/volunteers/");   
+  return res.data;
+};
+
+//Add Voluteer
+export const addVolunteer = async (email) => {
+  const res = await API.post("/volunteers/", { user_email: email });
+  return res.data;
+};
+
+
+
+// Delete volunteer by email
+export const deleteVolunteerByEmail = async (email) => {
+  const res = await API.delete(`/volunteers/?email=${email}`);
+  return res.data;
+};
+
+
+// ---------------- ADMIN ----------------
+export const checkAdmin = async () => {
+  const res = await API.get("/admins/me"); // ✅ make sure this endpoint exists in backend
+  return res.data;
+};
